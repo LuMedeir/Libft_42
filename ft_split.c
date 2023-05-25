@@ -42,9 +42,7 @@ static int	ft_move(char **str, const char *s, int len, int *count)
 	{
 		i = 0;
 		while (*count > i)
-		{
 			free(str[i++]);
-		}
 		return (1);
 	}
 	ft_memcpy(str[*count], s, len);
@@ -59,7 +57,9 @@ char	**ft_split(const char *s, char c)
 	int		count;
 	int		position;
 	char	**str;
-
+	
+	if (s == 0)
+		return (NULL);
 	str = (char **)malloc((ft_count(s, c) + 1) * sizeof(char *));
 	if (str == NULL)
 		return (NULL);
@@ -73,10 +73,8 @@ char	**ft_split(const char *s, char c)
 		while (s[index] && s[index] != c)
 			index++;
 		if (index > position)
-		{
 			if (ft_move(str, s + position, index - position, &count))
 				break ;
-		}
 	}
 	str[count] = NULL;
 	return (str);
